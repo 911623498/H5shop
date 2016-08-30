@@ -34,14 +34,16 @@ Route::group(['middleware' => ['web']], function () {
 	Route::any('index/left', 'IndexController@left');//左侧
 	Route::any('index/right', 'IndexController@right');//右侧
 
-	Route::any('Firm/liebiao', 'FirmController@liebiao');//企业
-	Route::any('Advert/advert', 'AdvertController@advert');//广告
-	Route::any('Advert/advertadd', 'AdvertController@advertadd');//广告添加
-	Route::any('Preson/preson', 'PresonController@preson');//个人信息
-	Route::any('Type/type', 'TypeController@type');//职位分类
-	Route::any('Article/article', 'ArticleController@article');//文章管理
-	Route::any('Search/search', 'SearchController@search');//热词管理
-	Route::any('User/user', 'UserController@user');//管理员列表
+    Route::any('User/user', 'UserController@user');//用户列表
+	Route::any('Shop/shoplist', 'ShopController@shoplist');//店铺列表
+    Route::any('Shop/shopadd', 'ShopController@shopadd');//店铺添加
+	Route::any('Type/typeadd', 'TypeController@typeadd');//分类添加
+    Route::any('Type/typelist', 'TypeController@typelist');//分类列表
+	Route::any('Goods/goodsadd', 'GoodsController@goodsadd');//商品添加
+    Route::any('Goods/goodslist', 'GoodsController@goodslist');//商品列表
+    Route::any('Brand/brandadd', 'BrandController@brandadd');//文章管理
+    Route::any('Brand/brandlist', 'BrandController@brandlist');//文章管理
+	Route::any('Search/search', 'SearchController@search');//搜索
 	Route::any('System/changepwd', 'SystemController@changepwd');//系统管理
 	
 });

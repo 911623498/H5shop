@@ -9,14 +9,18 @@ use Illuminate\Support\Facades\Cookie;
 use Input;
 use App\Http\Models\Role_type;
 
-class FirmController extends Controller
+class ShopController extends Controller
 {
 	/**
-	 * 公司列表
+	 * 店铺列表
 	 * [add description]
 	 */
-	public function liebiao()
+	public function shoplist()
 	{
-		return view('firm.list');
+		return view('shop.list');
 	}
+    public function shopadd()
+    {
+        return view('shop.shopadd');
+    }
 }

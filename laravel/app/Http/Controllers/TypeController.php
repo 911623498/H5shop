@@ -12,13 +12,15 @@ use App\Http\Models\Role_type;
 class TypeController extends Controller
 {
 	/**
-	 * 职位分类
+	 * 分类管理
 	 * @return [type] [description]
 	 */
-	public function type()
+	public function typeadd()
 	{
-
-        //echo 5655;die;
-		return view('type.type');
+		return view('type.typeadd');
 	}
+    public function typelist()
+    {;
+        return view('type.typelist');
+    }
 }
