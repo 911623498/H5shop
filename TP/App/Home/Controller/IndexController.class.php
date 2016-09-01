@@ -11,6 +11,7 @@ class IndexController extends CommonController {
     public function index(){
         //用户名不能为空
         $user_name = is_set($this -> _data , 'user_name' );
+		//echo $user_name;die;
         if (empty($user_name)) {
             return $this -> failure( parm::PARAM_MISS ,parm::PARAM_MISS_MSG );
         }
@@ -22,12 +23,11 @@ class IndexController extends CommonController {
         }
          //获取用户登录类型
         $user_type = is_set($this -> _data , 'type' );
-       // echo $user_type;die;
 
         //获取密码
-        $user_model = M('z_user');
+        $user_model = M('admin');
         $where = array(
-            'u_name' => $user_name
+            'adm_name' => $user_name
         );
 
         //查询用户信息
@@ -37,18 +37,27 @@ class IndexController extends CommonController {
         }
 
         //验证密码
-        if (md5($user_password) != $user_info['u_pwd'])
+        if (md5($user_password) != $user_info['adm_pwd'])
         {
             return  $this -> failure( error::USER_PASSWORD_ERROR,error::USER_PASSWORD_ERROR_MSG );
         }
 
-        if($user_info['u_activate']==0)
+        if($user_info['adm_lock']==0)
         {
             return  $this -> failure( error::USER_IS_LOCKER,error::USER_IS_LOCKER_MSG );
 
-        }
-
-        $where1=array(
+        }elseif($user_info['adm_lock']==1){
+			//修改登录时间、IP
+			$User = M("admin"); // 实例化User对象
+			// 要修改的数据对象属性赋值
+			$data = array('adm_time'=>date('Y-m-d H:i:s',time()),'adm_ip'=>$_SERVER['REMOTE_ADDR']);
+			$User-> where("adm_id=".$user_info['adm_id'])->setField($data);
+			 return  $this -> success($user_info,success::LOGIN_SUCCESS_MSG,success::LOGIN_SUCCESS);
+		}else{
+			 return  $this -> failure( error::USER_PASSWORD_ERRORS,error::USER_PASSWORD_ERROR_MSGS );
+		}
+die;
+/*         $where1=array(
             'u_id'=>$user_info['u_id'],
             'type'=>$user_type
         );
@@ -82,7 +91,7 @@ class IndexController extends CommonController {
                 'type'=>$user_type
             );
 
-            $re = M('add_type')->where($where2)->save($data);
+            $re = M('add_type')->where($where2)->save($data);0
             if($re)
             {
                 $user_info['token']=$token;
@@ -90,7 +99,7 @@ class IndexController extends CommonController {
                 $user_info['type']=$user_type;
                 return  $this -> success($user_info,success::LOGIN_SUCCESS_MSG,success::LOGIN_SUCCESS);
             }
-        }
+        } */
        // print_r($user_info);die;
 
 

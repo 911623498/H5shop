@@ -32,6 +32,10 @@ class error {
 
     const LOCK_MMEIAL = 2;
     const LOCK_MMEIAL_MSG = '您的验证信息已过期！';
-
+	
+	//账号状态错误
+	
+	const USER_IS_LOCKERS = 3;
+    const LOCK_MMEIAL_MSGS = '账号状态错误！';
 
 }

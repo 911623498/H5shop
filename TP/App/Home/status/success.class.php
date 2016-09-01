@@ -22,6 +22,9 @@ class success {
 
     const TOKEN_SUCCESS = 0;
     const TOKEN_SUCCESS_MSG = '登录成功!';
+	//修改密码
+	const USER_PWD=0;
+	const USER_PWD_MSG="密码正确！";
 
 
 

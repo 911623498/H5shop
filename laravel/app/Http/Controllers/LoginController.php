@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use Validator,DB,Redirect;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\CommController;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 use Input;
@@ -11,18 +11,41 @@ use App\Http\Models\Role_type;
 
 header("content-type:text/html;charset=utf-8");
 
-class IndexController extends Controller
+class LoginController extends CommController
 {
-	/**
-	 * 首页显示
+	
+		/**
+	 * 登录页面
 	 * @return [type] [description]
 	 */
-	public function index()
+	public function login()
 	{
-		return view('admin.index');
+
+        //echo 55;die;
+		return view('admin.log');
 	}
 
-	
+    /**
+     * 获取用户信息
+     * @return [type] [description]
+     */
+
+    function reuser(Request $request)
+    {
+        $name=$request->input('name');
+        $pwd=$request->input('pwd');
+        $uri = 'http://www.shop.com/H5shop/TP/Home/index/index';
+        $data = ['user_name'=>$name,'user_password'=>$pwd];
+        $json_user =$this->curl_post($uri,$data);
+        $arr = json_decode($json_user,true);
+		if($arr['status']==0){
+			session_start();
+			$_SESSION['user'] = $name;
+			$_SESSION['user_id'] = $arr['data']['adm_id'];
+		}
+        print_r($json_user);die;
+
+    }
     /*
      * curl 调用接口
      * */
@@ -40,31 +63,4 @@ class IndexController extends Controller
 
     }
 
-
-	/**
-	 * 头部
-	 * @return [type] [description]
-	 */
-	public function head()
-	{
-		return view('admin.head');
-	}
-
-	/**
-	 * 左边
-	 * @return [type] [description]
-	 */
-	public function left()
-	{
-		return view('admin.left');
-	}
-
-	/**
-	 * 右边
-	 * @return [type] [description]
-	 */
-	public function right()
-	{
-		return view('admin.right');
-	}
 }

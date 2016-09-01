@@ -13,7 +13,7 @@ class parm {
     const PASSWORD_IS_NULL = 1;
     const PASSWORD_IS_NULL_MSG = '参数错误:%s!';
     //用户不能为空
-    const PARAM_MISS = 1;
+    const PARAM_MISS = 1;                                                               
     const PARAM_MISS_MSG = '用户名不能为空！';
 
     //密码不能为空
@@ -40,5 +40,8 @@ class parm {
 
     const PARAM_USER = 1;
     const PARAM_USER_MSG = '请选择用类型！';
+	//修改密码
+	const USER_PWD=1;
+	const USER_PWD_MSG="密码不正确！";
 
 }
