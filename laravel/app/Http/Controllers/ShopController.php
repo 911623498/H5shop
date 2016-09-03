@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Cookie;
 use Input;
 use App\Http\Models\Role_type;
-
 class ShopController extends Controller
 {
 	/**
@@ -80,8 +79,12 @@ class ShopController extends Controller
         $data['shop_url']=$request->input('shop_url');
         if($file -> isValid()){
             $data['shop_img'] = $file -> getClientOriginalName();
-            $path = $file -> move('Shop/uploads',$data['shop_img']);
+//            echo $data['shop_img'];die;
+            $entension = $file -> getClientOriginalExtension();
+            $newName = md5(date('ymdhis').$data['shop_img']).'.'.$entension;
+            $path = $file -> move('Shop/uploads',$newName);
         }
+        $data['shop_img']=$newName;
         $url="www.aaa.net/TP/index.php/Home/Shop/shopadd";
         $arr=$this->curl_post($url,$data);
         $res=json_decode($arr);

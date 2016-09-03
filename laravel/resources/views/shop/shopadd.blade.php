@@ -55,18 +55,23 @@ function yan_name(){
         $("#shop_names").html("店铺名称不可为空");
     }else
     {
-        var data={"shop_name":shop_name};
-        var url="{{url('Shop/shopweiyi')}}";
-        $.get(url,data,function(msg){
-            if(msg==1)
-            {
+        $.ajax({
+            url: "{{url('Shop/shopweiyi')}}",
+            type: "POST",
+            data: "shop_name=" +shop_name,
+            dataType: "text",
+            async: false,
+            success: function (result) {
+                if (result == 1) {
+                    return ;
+                }else{
+                    $("#shop_names").html("");
+                }
+            },
+            error: function () {
                 $("#shop_names").html("店铺名称已存在，请重新输入");
-                return false;
-            }else
-            {
-                $("#shop_names").html("");
             }
-        })
+        });
     }
 }
 function yan_img(){
