@@ -17,7 +17,7 @@ class SystemController extends Controller
 	 */
 	public function changepwd()
 	{
-		$uri = 'http://www.shop.com/H5shop/TP/Home/System/changepwd';
+		$uri = 'http://www.aaa.net/TP/index.php/Home/System/changepwd';
 		//session_start();
 		$name=$_SESSION['user'];
 		$name_id=$_SESSION['user_id'];
@@ -36,7 +36,7 @@ class SystemController extends Controller
 		$pwd=$request->input('pwd');
 		$name_id=$_SESSION['user_id'];
 		$data = ['adm_pwd'=>$pwd,'name_id'=>$name_id];
-		$uri = 'http://www.shop.com/H5shop/TP/Home/System/changepwd';
+		$uri = 'http://www.aaa.net/TP/index.php/Home/System/changepwd';
 		$json_user =$this->curl_post($uri,$data);
         $arr = json_decode($json_user,true);
 		return ($arr);

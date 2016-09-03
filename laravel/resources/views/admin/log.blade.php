@@ -65,8 +65,9 @@
             success: function(msg){
                //console.log( eval("("+msg+")" ));
 			   var obj = eval("("+msg+")" );
-			   if(obj.status==0){
-				location.href="http://www.shop.com/H5shop/laravel/public/index/index";
+                //alert(obj.msg)
+                if(obj.status==0){
+				location.href="{{url('index/index')}}";
 			   }else{
 				   alert(obj.msg);
 			   }

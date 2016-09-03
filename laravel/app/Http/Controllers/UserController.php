@@ -31,7 +31,7 @@ class UserController extends Controller
 		$pageNum=$request->input('pageNum')?$request->input('pageNum'):0;
 		$sou=$request->input('sou')?$request->input('pageNum'):'';
 		$sou=$request->input('sou');
-		$uri = 'http://www.shop.com/H5shop/TP/Home/user/user';
+		$uri = 'http://www.aaa.net/TP/index.php/Home/user/user';
         $data = ['pageNum'=>$pageNum,'sou'=>$sou];
         $json_user =$this->curl_post($uri,$data);
 		 $arr = json_decode($json_user,true);

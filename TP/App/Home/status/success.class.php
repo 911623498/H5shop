@@ -27,6 +27,25 @@ class success {
 	const USER_PWD_MSG="密码正确！";
 
 
+	//店铺添加成功
+    const SHOP_SUCCESS = 0;
+    const SHOP_SUCCESS_MSG = '店铺添加成功!';
 
+    //店铺验证唯一成功
+    const SHOP_WEIYI_SUCCESS = 0;
+    const SHOP_WEIYI_SUCCESS_MSG = '店铺验证唯一成功!';
+
+    //店铺删除成功
+    const SHOP_DEL_SUCCESS = 0;
+    const SHOP_DEL_SUCCESS_MSG = '店铺删除成功!';
+
+    //分类添加成功
+    const  TYPE_SUCCESS = 0;
+    const  TYPE_SUCCESS_MSG = '分类添加成功!';
+
+
+    //分类修改成功
+    const  TYPE_UPD_SUCCESS = 0;
+    const  TYPE_UPD_SUCCESS_MSG = '分类修改成功!';
 
 }

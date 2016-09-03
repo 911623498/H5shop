@@ -34,7 +34,7 @@ class LoginController extends CommController
     {
         $name=$request->input('name');
         $pwd=$request->input('pwd');
-        $uri = 'http://www.shop.com/H5shop/TP/Home/index/index';
+        $uri = 'http://www.aaa.net/TP/index.php/Home/index/index';
         $data = ['user_name'=>$name,'user_password'=>$pwd];
         $json_user =$this->curl_post($uri,$data);
         $arr = json_decode($json_user,true);
@@ -44,7 +44,6 @@ class LoginController extends CommController
 			$_SESSION['user_id'] = $arr['data']['adm_id'];
 		}
         print_r($json_user);die;
-
     }
     /*
      * curl 调用接口
