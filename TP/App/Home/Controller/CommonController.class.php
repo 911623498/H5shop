@@ -11,8 +11,7 @@ class CommonController extends Controller
         'User/test_user',
         'Index/verify',
         'Index/test_vef',
-        'Index/nuion'
-
+        'Index/nuion',
     );
     public function __construct()
     {

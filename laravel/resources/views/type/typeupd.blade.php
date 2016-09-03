@@ -20,7 +20,7 @@
         <!-- user页面样式 -->
         <div class="connoisseur">
             <div class="conform">
-                <form action="{{url('Type/typetianjia')}}" onsubmit="return typeadd()" enctype="multipart/form-data" method="post">
+                <form action="{{url('Type/typeupds')}}" onsubmit="return typeadd()" enctype="multipart/form-data" method="post">
                     <div class="cfD">
                         分类名称:<input style="margin-top: 20px;margin-left: 30px;width: 300px" name="type_name" id="type_name" class="userinput" onblur="yan_name()" type="text" placeholder="分类名称" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="type_names" style="color: red;"></span><br/>
                         上级分类:
@@ -34,7 +34,8 @@
                         <br/>
                         分类logo: <input type="file" style="margin-top: 20px;margin-left: 30px" onblur="yan_img()" name="type_img" id="type_img" />
                         <span id="type_imgs" style="color: red;"></span><br/>
-                        <button   style="margin-top: 30px;margin-left: 100px" class="userbtn">添加</button>
+                        <input type="hidden" name="type_id" value="{{$type_id}}"/>
+                        <button   style="margin-top: 30px;margin-left: 100px" class="userbtn">修改</button>
                     </div>
                 </form>
             </div>
@@ -45,19 +46,6 @@
 </div>
 
 
-<!-- 删除弹出框 -->
-<div class="banDel">
-    <div class="delete">
-        <div class="close">
-            <a><img src="{{URL::asset('')}}style/img/shanchu.png" /></a>
-        </div>
-        <p class="delP1">你确定要删除此条记录吗？</p>
-        <p class="delP2">
-            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
-        </p>
-    </div>
-</div>
-<!-- 删除弹出框  end-->
 </body>
 
 <script type="text/javascript">
