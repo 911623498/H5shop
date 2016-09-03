@@ -65,8 +65,11 @@ class TypeController extends Controller
         $file =$request->file('type_img');
         if($file -> isValid()){
             $data['type_img'] = $file -> getClientOriginalName();
-            $path = $file -> move('Type/uploads',$data['type_img']);
+            $entension = $file -> getClientOriginalExtension();
+            $newName = md5(date('ymdhis').$data['type_img']).'.'.$entension;
+            $path = $file -> move('Type/uploads',$newName);
         }
+        $data['type_img']=$newName;
         //var_dump($data);die;
         $url="http://www.aaa.net/TP/index.php/Home/Type/typeadd";
         $arr=$this->curl_post($url,$data);
