@@ -63,7 +63,7 @@
             url: "{{url('Login/reuser')}}",
             data: "name="+name+"&&pwd="+pwd,
             success: function(msg){
-               console.log( eval("("+msg+")" ));
+               //console.log( eval("("+msg+")" ));
 			   var obj = eval("("+msg+")" );
 			   if(obj.status==0){
 				location.href="http://www.shop.com/H5shop/laravel/public/index/index";
