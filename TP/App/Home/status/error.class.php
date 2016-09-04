@@ -32,6 +32,19 @@ class error {
 
     const LOCK_MMEIAL = 2;
     const LOCK_MMEIAL_MSG = '您的验证信息已过期！';
+   /**
+    * 品牌
+    */
+   //品牌添加
+    const PINPAI_MAME = 1;
+    const PINPAI_MAME_MSG = '品牌名称不能为空';
 
+    const PINPAI_IMG = 2;
+    const PINPAI_IMG_MSG = '请上传图片';
 
+    const PINPAI_UPLOAD = 3;
+    const PINPAI_UPLOAD_MSG = '图片上传失败';
+    //删除
+    const PINPAI_DEL = 0;
+    const PINPAI_DEL_MSG = '品牌下有商品删除失败';
 }

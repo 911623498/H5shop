@@ -39,10 +39,23 @@ Route::group(['middleware' => ['web']], function () {
     Route::any('Shop/shopadd', 'ShopController@shopadd');//店铺添加
 	Route::any('Type/typeadd', 'TypeController@typeadd');//分类添加
     Route::any('Type/typelist', 'TypeController@typelist');//分类列表
+
+    //商品
 	Route::any('Goods/goodsadd', 'GoodsController@goodsadd');//商品添加
     Route::any('Goods/goodslist', 'GoodsController@goodslist');//商品列表
-    Route::any('Brand/brandadd', 'BrandController@brandadd');//文章管理
-    Route::any('Brand/brandlist', 'BrandController@brandlist');//文章管理
+    Route::any('Goods/add_data', 'GoodsController@add_data');//商品列表
+
+
+    //品牌
+    Route::any('Brand/brandadd', 'BrandController@brandadd');//品牌添加页面
+    Route::any('Brand/yz', 'BrandController@yz');//品牌添加验证唯一
+    Route::any('Brand/brandlist', 'BrandController@brandlist');//品牌列表页面
+    Route::any('Brand/add_data', 'BrandController@add_data');//品牌列表页面
+    Route::any('Brand/predel', 'BrandController@predel');//品牌删除
+
+
+
+
 	Route::any('Search/search', 'SearchController@search');//搜索
 	Route::any('System/changepwd', 'SystemController@changepwd');//系统管理
 	

@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 <title>管理员管理-有点</title>
 <link rel="stylesheet" type="text/css" href="{{URL::asset('')}}style/css/css.css" />
 <script type="text/javascript" src="{{URL::asset('')}}style/js/jquery.min.js"></script>
@@ -20,35 +21,35 @@
 			<!-- user页面样式 -->
 			<div class="connoisseur">
 				<div class="conform">
-					<form>
-						<div class="cfD">
-							<input class="userinput" type="text" placeholder="输入用户名" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="userinput vpr" type="text" placeholder="输入用户密码" />
-							<button class="userbtn">添加</button>
-						</div>
-					</form>
+
 				</div>
 				<!-- user 表格 显示 -->
 				<div class="conShow">
 					<table border="1" cellspacing="0" cellpadding="0">
 						<tr>
 							<td width="66px" class="tdColor tdC">序号</td>
-							<td width="435px" class="tdColor">会员等级</td>
-							<td width="400px" class="tdColor">用户名</td>
-							<td width="630px" class="tdColor">添加时间</td>
+							<td width="435px" class="tdColor">品牌名称</td>
+							<td width="400px" class="tdColor">LOGO</td>
 							<td width="130px" class="tdColor">操作</td>
 						</tr>
-						<tr height="40px">
-							<td>1</td>
-							<td>运营专员</td>
-							<td>山下就只</td>
-							<td>2015-25-36 12:12</td>
-							<td><a href="connoisseuradd.html"><img class="operation"
-									src="{{URL::asset('')}}style/img/update.png"></a> <img class="operation delban"
-								src="{{URL::asset('')}}style/img/delete.png"></td>
+                        <?php
+                            foreach($res['data']['list'] as $k=>$v){
+                        ?>
+						<tr height="40px" id="<?php echo $v['pre_id']?>">
+                            <td width="66px" class="tdColor tdC"><?php echo $v['pre_id']?></td>
+                            <td width="435px" class="tdColor"><?php echo $v['pre_name']?></td>
+                            <td width="400px" class="tdColor">
+                                <img src="{{URL::asset('')}}/img/prefecture/<?php echo $v['pre_img']?>" width="80px" height="50px"/>
+                            </td>
+                            <td width="130px" class="tdColor">
+                                <a href="javascript:void(0)" onclick="sc(<?php echo $v['pre_id']?>)">删除</a>
+                            </td>
 						</tr>
+                        <?php
+                            }
+                        ?>
 					</table>
-					<div class="paging">此处是分页</div>
+					<CENTER><div class="paging"><?php echo $res['str']?></div></CENTER>
 				</div>
 				<!-- user 表格 显示 end-->
 			</div>
@@ -72,18 +73,27 @@
 	</div>
 	<!-- 删除弹出框  end-->
 </body>
-
+<script src="{{URL::asset('')}}js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-// 广告弹出框
-$(".delban").click(function(){
-  $(".banDel").show();
-});
-$(".close").click(function(){
-  $(".banDel").hide();
-});
-$(".no").click(function(){
-  $(".banDel").hide();
-});
-// 广告弹出框 end
+    function sc(id){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "{{url('Brand/predel')}}",
+            data: "id="+id,
+            success: function(msg){
+                if(msg == 1){
+                    alert("删除成功");
+                    location.href="{{url('Brand/brandlist')}}";
+                }else{
+                    alert("该分类下有商品，不可以删除")
+                }
+            }
+        });
+    }
 </script>
 </html>

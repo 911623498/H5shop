@@ -23,7 +23,21 @@ class success {
     const TOKEN_SUCCESS = 0;
     const TOKEN_SUCCESS_MSG = '登录成功!';
 
+    //品牌添加
+    const PINPAI_SUCCESS = 0;
+    const PINPAI_SUCCESS_MSG = '添加成功!';
 
+    //品牌列表
+    const PERLIST_SUCCESS = 0;
+    const PERLIST_SUCCESS_MSG = '列表成功!';
+    //品牌删除
+    const PERDEL_SUCCESS = 1;
+    const PERDEL_SUCCESS_MSG = '品牌删除成功!';
 
-
+    //品牌删除
+    const SHTJ_SUCCESS = 1;
+    const SHTJ_SUCCESS_MSG = '商品添加成功!';
+    //品牌删除
+    const LBFY_SUCCESS = 1;
+    const LBFY_SUCCESS_MSG = '分页成功!';
 }

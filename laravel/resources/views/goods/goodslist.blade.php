@@ -9,81 +9,111 @@
 </head>
 
 <body>
-	<div id="pageAll">
-		<div class="pageTop">
-			<div class="page">
-				<img src="{{URL::asset('')}}style/img/coin02.png" /><span><a href="{{url('index/index')}}">首页</a>&nbsp;-&nbsp;<a
-					href="{{url('Advert/advert')}}">广告管理</a>&nbsp;-</span>&nbsp;广告列表
-			</div>
-		</div>
-		<div class="page">
-			<!-- banner页面样式 -->
-			<div class="banner">
-				<div class="add">
-					<a class="addA" href="{{url('Advert/advertadd')}}">上传广告&nbsp;&nbsp;+</a>
-				</div>
-				<!-- banner 表格 显示 -->
-				<div class="banShow">
-					<table border="1" cellspacing="0" cellpadding="0">
-						<tr>
-							<td width="66px" class="tdColor tdC">序号</td>
-							<td width="315px" class="tdColor">图片</td>
-							<td width="308px" class="tdColor">名称</td>
-							<td width="450px" class="tdColor">链接</td>
-							<td width="215px" class="tdColor">是否显示</td>
-							<td width="180px" class="tdColor">排序</td>
-							<td width="125px" class="tdColor">操作</td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><div class="bsImg">
-									<img src="{{URL::asset('')}}style/img/banimg.png">
-								</div></td>
-							<td>双十一连天购</td>
-							<td><a class="bsA" href="#">http://www.sdfsdfsdfds.com</a></td>
-							<td>是</td>
-							<td>1</td>
-							<td><a href="banneradd.html"><img class="operation"
-									src="{{URL::asset('')}}style/img/update.png"></a> <img class="operation delban"
-								src="{{URL::asset('')}}style/img/delete.png"></td>
-						</tr>
-						<tr>
-							<td>1</td>
-							<td><div class="bsImg">
-									<img src="{{URL::asset('')}}style/img/banimg.png">
-								</div></td>
-							<td>双十一连天购</td>
-							<td><a class="bsA" href="#">http://www.sdfsdfsdfds.com</a></td>
-							<td>是</td>
-							<td>1</td>
-							<td><a href="banneradd.html"><img class="operation"
-									src="{{URL::asset('')}}style/img/update.png"></a> <img class="operation delban"
-								src="{{URL::asset('')}}style/img/delete.png"></td>
-						</tr>
-					</table>
-					<div class="paging">此处是分页</div>
-				</div>
-				<!-- banner 表格 显示 end-->
-			</div>
-			<!-- banner页面样式end -->
-		</div>
+<div id="pageAll">
+    <div class="pageTop">
+        <div class="page">
+            <img src="{{URL::asset('')}}style/img/coin02.png" /><span><a href="{{url('index/index')}}">首页</a>&nbsp;-&nbsp;-</span>&nbsp;商品列表
+        </div>
+    </div>
 
-	</div>
+    <div class="page">
+        <!-- user页面样式 -->
+        <div class="connoisseur">
+            <div class="conform">
+
+            </div>
+            <!-- user 表格 显示 -->
+            <div class="conShow">
+                <table border="1" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="66px" class="tdColor tdC">序号</td>
+                        <td width="435px" class="tdColor">商品名称</td>
+                        <td width="400px" class="tdColor">商品图片</td>
+                        <td width="400px" class="tdColor">店铺</td>
+                        <td width="400px" class="tdColor">专区</td>
+                        <td width="400px" class="tdColor">类型</td>
+                        <td width="400px" class="tdColor">路径</td>
+                        <td width="400px" class="tdColor">商品价格</td>
+                        <td width="400px" class="tdColor">秒杀价格</td>
+                        <td width="400px" class="tdColor">返利价格</td>
+                        <td width="400px" class="tdColor">商品描述</td>
+                        <td width="400px" class="tdColor">库存</td>
+                        <td width="400px" class="tdColor">秒杀开始时间</td>
+                        <td width="400px" class="tdColor">秒杀结束时间</td>
+                        <td width="400px" class="tdColor">是否显示</td>
+                        <td width="400px" class="tdColor">商品状态</td>
+                        <td width="400px" class="tdColor">销量</td>
+                        <td width="130px" class="tdColor">操作</td>
+                    </tr>
+                    <?php
+                    foreach($res['data']['list'] as $k=>$v){
+                    ?>
+                    <tr height="40px" id="<?php echo $v['pre_id']?>">
+                        <td width="66px" class="tdColor tdC"><?php echo $v['goods_id']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_name']?></td>
+                        <td width="400px" class="tdColor">
+                            <img src="{{URL::asset('')}}img/shop/<?php echo $v['goods_img']?>" width="80px" height="50px"/>
+                        </td>
+                        <td width="435px" class="tdColor"><?php echo $v['shop_name']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['pre_name']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['type_name']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_url']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_price']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_seckill']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_rebate']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_desc']?></td>
+                        <td width="435px" class="tdColor"><?php echo $v['goods_num']?></td>
+                        <td width="435px" class="tdColor"><?php echo date("Y-m-d H:i:s",$v['add_time'])?></td>
+                        <td width="435px" class="tdColor"><?php echo date("Y-m-d H:i:s",$v['end_time'])?></td>
+                        <td width="435px" class="tdColor"><?php
+                            if($v['is_show'] == 1){
+                                echo "未上架";
+                            }else if($v['is_show'] == 2){
+                                echo "上架";
+                            }else{
+                                echo "下架";
+                            }
+                            ?></td>
+                        <td width="435px" class="tdColor"><?php
+                            if($v['is_hot'] == 1){
+                                echo "是";
+                            }else{
+                                echo "否";
+                            }
+                            ?></td>
+
+                        <td width="435px" class="tdColor"><?php echo $v['sale_num']?></td>
+                        <td width="130px" class="tdColor">
+                            <a href="javascript:void(0)" onclick="sc()">删除</a>
+                        </td>
+                    </tr>
+                    <?php
+                    }
+                    ?>
+                </table>
+                <CENTER><div class="paging"><?php echo $res['str']?></div></CENTER>
+            </div>
+            <!-- user 表格 显示 end-->
+        </div>
+        <!-- user页面样式end -->
+    </div>
+
+</div>
 
 
-	<!-- 删除弹出框 -->
-	<div class="banDel">
-		<div class="delete">
-			<div class="close">
-				<a><img src="{{URL::asset('')}}style/img/shanchu.png" /></a>
-			</div>
-			<p class="delP1">你确定要删除此条记录吗？</p>
-			<p class="delP2">
-				<a href="#" class="ok yes" onclick="del()">确定</a><a class="ok no">取消</a>
-			</p>
-		</div>
-	</div>
-	<!-- 删除弹出框  end-->
+<!-- 删除弹出框 -->
+<div class="banDel">
+    <div class="delete">
+        <div class="close">
+            <a><img src="{{URL::asset('')}}style/img/shanchu.png" /></a>
+        </div>
+        <p class="delP1">你确定要删除此条记录吗？</p>
+        <p class="delP2">
+            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+        </p>
+    </div>
+</div>
+<!-- 删除弹出框  end-->
 </body>
 
 <script type="text/javascript">
