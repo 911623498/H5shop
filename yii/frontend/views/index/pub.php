@@ -24,7 +24,7 @@
         <li>
             <a href="index.php?r=car/index" class="">
                 <span class="am-icon-shopping-cart"></span>
-                <span class="am-navbar-label">购物车</span>
+                <span class="am-navbar-label">提醒我</span>
             </a>
         </li>
         <li>

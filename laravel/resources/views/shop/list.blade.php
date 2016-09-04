@@ -7,7 +7,18 @@
 <script type="text/javascript" src="{{URL::asset('')}}style/js/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="js/page.js" ></script> -->
 </head>
-
+<style>
+#list{width:680px; height:530px; margin:2px auto; position:relative}
+#list ul li{float:left;width:220px; height:260px; margin:2px}
+#list ul li img{width:220px; height:220px}
+#list ul li p{line-height:22px}
+#pagecount{width:500px; margin:10px auto; text-align:center}
+#pagecount span{margin:4px; font-size:14px}
+#list ul li#loading{width:120px; height:32px; border:1px solid #d3d3d3;
+position:absolute; top:35%; left:42%; text-align:center; background:#f7f7f7
+url(loading.gif) no-repeat 8px 8px;-moz-box-shadow:1px 1px 2px rgba(0,0,0,.2);
+-webkit-box-shadow:1px 1px 2px rgba(0,0,0,.2); box-shadow:1px 1px 2px rgba(0,0,0,.2);}
+</style>
 <body>
 	<div id="pageAll">
 		<div class="pageTop">
@@ -20,35 +31,30 @@
 			<!-- user页面样式 -->
 			<div class="connoisseur">
 				<div class="conform">
-					<form>
+					<form action="{{url('Shop/shopadd')}}">
 						<div class="cfD">
-							<input class="userinput" type="text" placeholder="输入用户名" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="userinput vpr" type="text" placeholder="输入用户密码" />
-							<button class="userbtn">添加</button>
+                            <input type="text" style="width: 150px;height: 35px" id="search" placeholder="请输入店铺名字"/>
+                            <input type="button"  onclick="changepage(1)" value="搜索" style="margin-left: 10px;margin-top:10px" class="userbtn"/>
+                            <input type="submit" value="添加" style="margin-left: 10px;margin-top:10px" class="userbtn"/>
 						</div>
 					</form>
 				</div>
 				<!-- user 表格 显示 -->
-				<div class="conShow">
+				<div class="conShow" style="margin-top: 10px">
 					<table border="1" cellspacing="0" cellpadding="0">
 						<tr>
 							<td width="66px" class="tdColor tdC">序号</td>
-							<td width="435px" class="tdColor">会员等级</td>
-							<td width="400px" class="tdColor">用户名</td>
+							<td width="435px" class="tdColor">店铺名称</td>
+							<td width="400px" class="tdColor">店铺logo</td>
 							<td width="630px" class="tdColor">添加时间</td>
-							<td width="130px" class="tdColor">操作</td>
-						</tr>
-						<tr height="40px">
-							<td>1</td>
-							<td>运营专员</td>
-							<td>山下就只</td>
-							<td>2015-25-36 12:12</td>
-							<td><a href="connoisseuradd.html"><img class="operation"
-									src="{{URL::asset('')}}style/img/update.png"></a> <img class="operation delban"
-								src="{{URL::asset('')}}style/img/delete.png"></td>
-						</tr>
+							<td width="130px" class="tdColor">店铺描述</td>
+                            <td width="130px" class="tdColor">店铺url</td>
+                            <td width="130px" class="tdColor">编辑</td>
+                        </tr>
+                        <tbody>
+                        </tbody>
 					</table>
-					<div class="paging">此处是分页</div>
+                    <div id="pagecount"></div>
 				</div>
 				<!-- user 表格 显示 end-->
 			</div>
@@ -85,5 +91,92 @@ $(".no").click(function(){
   $(".banDel").hide();
 });
 // 广告弹出框 end
+var curPage = 1; //当前页码
+var total,pageSize,totalPage; //总记录数，每页显示数，总页数
+//获取数据
+function getData(page,search){
+    $.ajax({
+        type: 'POST',
+        url: '{{url('Shop/shoplists')}}',
+        data: {'page':page,'search':search},
+        dataType:'json',
+        beforeSend:function(){
+            $("#list tr").append("<td id='loading'>loading...</td>");//显示加载动画
+        },
+        success:function(json){
+            console.log(json.data);
+            $("#list tr").empty();//清空数据区
+            total = json.count; //总记录数
+            pageSize = json.num; //每页显示条数
+            curPage = page; //当前页
+            totalPage = json.max_page; //总页数
+            var td = "";
+            var list = json.data;
+            $.each(list,function(index,array){ //遍历json数据列
+                td += "<tr id='trs"+array.shop_id+"'>"+"<td>"+array.shop_id +"</td>"+"<td>"+array.shop_name +"</td>"+"<td>"+"<img style='width:50px;height: 50px;' src='uploads/"+array.shop_img+"'/>"+"</td>"+"<td>"+array.shop_time +"</td>"+"<td>"+array.shop_desc +"</td>"+"<td>"+array.shop_url +"</td>"+"<td>"+'<a href="javascript:void(0)" onclick="dels('+array.shop_id+')"><img class="operation delban" src="http://www.aaa.net/laravel/public/style/img/delete.png"></a>'+"</td>"+"</tr>";
+            });
+            $("tbody").eq(1).html(td);
+        },
+        complete:function(){ //生成分页条
+            getPageBar();
+        },
+        error:function(){
+            alert("数据加载失败");
+        }
+    });
+}
+//获取分页条
+function getPageBar(){
+    //页码大于最大页数
+    if(curPage>totalPage) curPage=totalPage;
+    //页码小于1
+    if(curPage<1) curPage=1;
+    pageStr = "<span>共"+total+"条</span><span>"+curPage
+    +"/"+totalPage+"</span>";
+
+    //如果是第一页
+    if(curPage==1){
+        pageStr += "<span>首页</span><span>上一页</span>";
+    }else{
+        pageStr += "<span><a href='javascript:void(0)' onclick='changepage(1)' rel='1'>首页</a></span>" +
+        "<span><a href='javascript:void(0)' onclick='changepage(curPage-1)' rel='"+(curPage-1)+"'>上一页</a></span>";
+    }
+
+    //如果是最后页
+    if(curPage>=totalPage){
+        pageStr += "<span>下一页</span><span>尾页</span>";
+    }else{
+        pageStr += "<span><a href='javascript:void(0)' onclick='changepage(parseInt(curPage)+1)' rel='"+(parseInt(curPage)+1)+"'>下一页</a></span><span><a href='javascript:void(0)' onclick='changepage(totalPage)'  rel='"+totalPage+"'>尾页</a> </span>";
+    }
+
+    $("#pagecount").html(pageStr);
+}
+$(function(){
+    getData(1);
+});
+function changepage(rel){
+    var search=$("#search").val();
+    if(rel){
+        getData(rel,search);
+    }
+}
+    function dels(shop_id)
+    {
+        var state=window.confirm("你确认要删除么");
+        if(state)
+        {
+            var data={"shop_id":shop_id};
+            var url="{{url('Shop/shopdels')}}";
+            $.get(url,data,function(msg){
+                   if(msg==0)
+                   {
+                       $("#trs"+shop_id).remove();
+                   }else
+                   {
+                       alert("删除失败")
+                   }
+            })
+        }
+    }
 </script>
 </html>

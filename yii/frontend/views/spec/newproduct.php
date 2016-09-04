@@ -22,7 +22,7 @@
 				</a>
 			</div>
 			<h1 class="am-header-title">
-  	            <a href="" class="">新品</a>
+  	            <a href="" class=""><?php echo $shop?></a>
             </h1>
 	    </header>
 	    <div style="height: 49px;"></div>
@@ -30,43 +30,24 @@
 			      <div class="am-tabs-bd">
 			          <div data-tab-panel-0 class="am-tab-panel am-active">
                          <ul data-am-widget="gallery" class="am-gallery special am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-gallery-default" >
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						 </ul>
+						    <?php foreach($arr as $k=>$v) { ?>
+                                <li>
+                                    <div class="am-gallery-item">
+                                        <a href="?r=spec/detail&id=<?php echo $v['goods_id']?>" class="">
+                                            <img src="style/images/test10.png"/>
+
+                                            <h3 class="am-gallery-title"><?php echo $v['goods_name']?></h3>
+
+                                            <div class="am-gallery-desc">￥<?php echo $v['goods_rebate']?>
+                                                <del>￥<?php echo $v['goods_price']?></del>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            <?php
+                            }
+                        ?>
+						  </ul>
 			          </div>
 			    
             </div>

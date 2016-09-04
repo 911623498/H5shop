@@ -11,22 +11,19 @@ use Home\status\parm;
 class BaseCheck
 {
 
-
     /**
      * 根据模块检测是否缺少参数
      */
-    public function checkParam(&$data, $template)
+    public function checkParam($data, $template)
     {
         //遍历判断是否传递必须参数,并且对参数进行强制类型转换
         foreach ($template as $key => $value) {
-
             //必传参数缺少
             if ($value['is_must'] == 1) {
                 if (!isset($data[$key])) {
                     $error = array('mark' => parm::USER_NAME_IS_NULL , 'msg' => sprintf(parm::USER_NAME_IS_NULL_MSG, $key));
                     break;
                 } else {
-
                     //强制类型转换
                     $this -> f( $value['type'] , $data[$key] );
                     if ( !empty( $value['enum_array'] ) && !in_array($data[$key], $value['enum_array'])) {
@@ -37,7 +34,6 @@ class BaseCheck
             }else{
                 //强制类型转换
                $this -> f( $value['type'] , $data[$key] );
-
                 //参数是否正确
                 if ( !empty( $value['enum_array'] ) && !in_array($data[$key], $value['enum_array'])) {
                     $error = array('mark' => 1, 'msg' => sprintf(parm::PASSWORD_IS_NULL_MSG, $key));

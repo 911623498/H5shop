@@ -22,33 +22,7 @@ class IndexController extends Controller
 		return view('admin.index');
 	}
 
-	/**
-	 * 登录页面
-	 * @return [type] [description]
-	 */
-	public function login()
-	{
-
-        //echo 55;die;
-		return view('admin.log');
-	}
-
-    /**
-     * 获取用户信息
-     * @return [type] [description]
-     */
-
-    function reuser(Request $request)
-    {
-        $name=$request->input('name');
-        $pwd=$request->input('pwd');
-        $uri = 'http://www.aaa.net/H5/TP/index.php/Home/Index/index';
-        $data = ['user_name'=>$name,'user_password'=>$pwd];
-        $json_user =$this->curl_post($uri,$data);
-        $arr = json_decode($json_user,true);
-        print_r($arr);
-
-    }
+	
     /*
      * curl 调用接口
      * */

@@ -11,6 +11,7 @@ class ListController extends Controller{
     {
         return $this->render('list');
     }
+
 }
 
 ?>

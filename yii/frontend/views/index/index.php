@@ -1,6 +1,7 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>超级返</title>
@@ -31,6 +32,7 @@
 		</script>
 	</head>
 	<body>
+
 <!--图片轮换-->
 <div class="am-slider am-slider-default" data-am-flexslider id="demo-slider-0" style="position: relative;">
 	<header data-am-widget="header" class="am-header am-header-default tm-head" id="shortbar" >
@@ -42,8 +44,8 @@
 		   </div>
 			<h1 class="am-header-title1">
 		        <div class="search-box">
-		           <input type="text" name="title" class="index-search" placeholder="寻找你喜欢的商品......" />
-		           <input type="submit" value="" class="search-icon" /> 
+		           <input type="text" name="title" class="index-search"   id="content" placeholder="寻找你喜欢的商品......" />
+		           <input type="submit" value="" class="search-icon"  id="search" />
 		        </div>
 		    </h1>
 			<div class="am-header-right am-header-nav">
@@ -103,9 +105,9 @@
       </li>
       <li>
         <div class="am-gallery-item">
-            <a href="whitebar.html" class="">
+            <a href="index.php?r=buy/index" class="">
               <img src="style/images/icon5.png" />
-              <p>白条</p>
+              <p>限时抢购</p>
             </a>
         </div>
       </li>
@@ -127,10 +129,11 @@
       </li>
   </ul>
  <!--限时秒杀 -->
+
  <div class="sq-title">
  	<i class="am-icon-volume-up"></i>
  	<div class="fnTimeCountDown" data-end="2018/07/08 18:45:13">
-                   限时秒杀：距开抢 
+        <?php echo $seckill['pre_name']?>：距开抢
         <span class="hour">00</span>
         <strong>:</strong>
         <span class="mini">00</span>
@@ -142,158 +145,84 @@
     </script>
  </div>
   <ul data-am-widget="gallery" class="am-gallery pro-list am-avg-sm-3 am-avg-md-3 am-avg-lg-4 am-gallery-default"  >
+      <?php foreach($seckill['son'] as $k=>$v) { ?>
       <li>
         <div class="am-gallery-item">
-            <a href="index.php?r=list/index" class="">
+            <a href="index.php?r=magr/seckill&id=<?php echo $v['goods_id']?>" class="">
               <img src="style/images/test.png" />
-                <h3 class="am-gallery-title">猪骨头棒新鲜生鲜肉制品猪大骨头筒骨熬汤佳品500g</h3>
-                <div class="am-gallery-desc">￥52</div>
+                <h3 class="am-gallery-title"><?php echo $v['goods_name']?></h3>
+                <div class="am-gallery-desc">商品价格 <del>￥<?php echo $v['goods_price']?></del></div>
+                <div class="am-gallery-desc">秒杀价格 ￥<?php echo $v['goods_seckill']?></div>
             </a>
         </div>
       </li>
-      <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test1.png" />
-                <h3 class="am-gallery-title">冻品批发大江鸡腿 冷鲜鸡腿放心食材1kg 冷冻食材</h3>
-                <div class="am-gallery-desc">￥39</div>
-            </a>
-        </div>
-      </li>
-        <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test2.png" />
-                <h3 class="am-gallery-title">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</h3>
-                <div class="am-gallery-desc">￥45.8</div>
-            </a>
-        </div>
-      </li>
+      <?php
+      }
+      ?>
   </ul>
+
  <!-- 特色专区-->
-  <div class="sq-title">
- 	<img src="style/images/ts.png" width="24"/>
- 	特色专区
- </div>
-  <ul data-am-widget="gallery" class="am-gallery pro-list am-avg-sm-3 am-avg-md-3 am-avg-lg-4 am-gallery-default"  >
-      <li>
-        <div class="am-gallery-item">
-            <a href="index.php?r=list/index" class="">
-              <img src="style/images/test3.png" />
-                <h3 class="am-gallery-title">猪骨头棒新鲜生鲜肉制品猪大骨头筒骨熬汤佳品500g</h3>
-                <div class="am-gallery-desc">￥52</div>
-            </a>
-        </div>
-      </li>
-      <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test4.png" />
-                <h3 class="am-gallery-title">冻品批发大江鸡腿 冷鲜鸡腿放心食材1kg 冷冻食材</h3>
-                <div class="am-gallery-desc">￥39</div>
-            </a>
-        </div>
-      </li>
+<?php error_reporting(0);?>
+<?php foreach($goods as $k=>$v) { ?>
+    <div class="sq-title">
+        <img src="style/images/ts.png" width="24"/>
+       <?php echo $v['pre_name']?>
+    </div>
+    <ul data-am-widget="gallery" class="am-gallery pro-list am-avg-sm-3 am-avg-md-3 am-avg-lg-4 am-gallery-default">
+        <?php foreach($v['son'] as $kk=>$vv) { ?>
         <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test5.png" />
-                <h3 class="am-gallery-title">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</h3>
-                <div class="am-gallery-desc">￥45.8</div>
-            </a>
-        </div>
-      </li>
-  </ul>
-  <!-- 精品专区-->
-  <div class="sq-title">
- 	<img src="style/images/jp.png" width="24"/>
- 	精品专区
- </div>
-  <ul data-am-widget="gallery" class="am-gallery pro-list am-avg-sm-3 am-avg-md-3 am-avg-lg-4 am-gallery-default"  >
-      <li>
-        <div class="am-gallery-item">
-            <a href="index.php?r=list/index" class="">
-              <img src="style/images/test.png" />
-                <h3 class="am-gallery-title">猪骨头棒新鲜生鲜肉制品猪大骨头筒骨熬汤佳品500g</h3>
-                <div class="am-gallery-desc">￥52</div>
-            </a>
-        </div>
-      </li>
-      <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test1.png" />
-                <h3 class="am-gallery-title">冻品批发大江鸡腿 冷鲜鸡腿放心食材1kg 冷冻食材</h3>
-                <div class="am-gallery-desc">￥39</div>
-            </a>
-        </div>
-      </li>
+            <div class="am-gallery-item">
+                <a href="?r=spec/detail&id=<?php echo $vv['goods_id']?>" class="">
+                    <img src="style/images/test3.png"/>
+                    <h3 class="am-gallery-title"><?php echo $vv['goods_name']?></h3>
+                    <div class="am-gallery-desc">商品价格 <del>￥<?php echo $vv['goods_price']?></del>&nbsp;&nbsp;&nbsp;返利价格 ￥<?php echo $vv['goods_rebate']?></div>
+                </a>
+            </div>
+        </li>
+        <?php
+        }
+        ?>
+    </ul>
+<?php
+}
+  ?>
+
+<div class="sq-title">
+    <img src="style/images/bm.png" width="24"/>
+    名誉商铺
+</div>
+
+<ul class="yule">
+    <?php foreach($shop as $k=>$v) { ?>
         <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test2.png" />
-                <h3 class="am-gallery-title">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</h3>
-                <div class="am-gallery-desc">￥45.8</div>
+            <a href="?r=spec/shop&id=<?php echo $v['shop_id']?>">
+                <img src="http://www.aaa.net/H5shop/laravel/public/Shop/uploads/">
+                <div style="width: 70%; float: left;">
+                    <h3 class="title"><?php echo $v['shop_name']?></h3>
+
+                    <p class="intro"><?php echo $v['shop_desc']?></p>
+
+                </div>
             </a>
-        </div>
-      </li>
-  </ul>
-  <!-- 便民-->
-  <div class="sq-title">
- 	<img src="style/images/bm.png" width="24"/>
- 	便民服务
- </div>
- <ul class="yule">
-        <li>
-			<a href="index.php?r=list/index">
-				<img src="style/images/test.jpg">
-				<div style="width: 70%; float: left;">
-				<h3 class="title">青山湖区熊氏锁业</h3>
-				<p class="intro">开、修、换各式民用锁具（各类普通房门、防盗门、车库门、密码箱</p>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="news.html">
-				<img src="style/images/test.jpg">
-				<div style="width: 70%; float: left;">
-				<h3 class="title">青山湖区熊氏锁业</h3>
-				<p class="intro">开、修、换各式民用锁具（各类普通房门、防盗门、车库门、密码箱</p>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="news.html">
-				<img src="style/images/test.jpg">
-				<div style="width: 70%; float: left;">
-				<h3 class="title">青山湖区熊氏锁业</h3>
-				<p class="intro">开、修、换各式民用锁具（各类普通房门、防盗门、车库门、密码箱</p>
-				</div>
-			</a>
-		</li>
-		<li>
-			<a href="news.html">
-				<img src="style/images/test.jpg">
-				<div style="width: 70%; float: left;">
-				<h3 class="title">青山湖区熊氏锁业</h3>
-				<p class="intro">开、修、换各式民用锁具（各类普通房门、防盗门、车库门、密码箱</p>
-				</div>
-			</a>
-		</li>
- </ul>
+        </li>
+    <?php
+    }
+?>
+</ul>
  <!--底部-->
 <?php use yii\widgets\ActiveForm;?>
 <?php $form = ActiveForm::begin(); ?>
 <?php $this->beginContent('@frontend/views/index/pub.php')?>
 <?php $this->endContent();?>
 <?php ActiveForm::end(); ?>
-
- 
- 
- 
- 
  
 <script src="style/js/jquery.min.js"></script>
 <script src="style/js/amazeui.min.js"></script>
 	</body>
 </html>
+<script>
+    $("#search").click(function(){
+        var search = $("#content").val();
+        self.location="?r=cate/search&search="+search;
+    });
+</script>

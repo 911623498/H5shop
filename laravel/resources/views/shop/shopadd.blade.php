@@ -20,57 +20,21 @@
 			<!-- user页面样式 -->
 			<div class="connoisseur">
 				<div class="conform">
-					<form>
+					<form action="{{url('Shop/shoptianjia')}}" onsubmit="return shopadd()" enctype="multipart/form-data" method="post">
 						<div class="cfD">
-							<input class="userinput" type="text" placeholder="输入用户名" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-							<input class="userinput vpr" type="text" placeholder="输入用户密码" />
-							<button class="userbtn">添加</button>
+							店铺名称:<input style="margin-top: 20px;margin-left: 30px;width: 300px" name="shop_name" onblur="yan_name()" id="shop_name" class="userinput" type="text" placeholder="店铺名称" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="shop_names" style="color: red;"></span><br/>
+                            店铺log: <input type="file" onblur="yan_img()" style="margin-top: 20px;margin-left: 30px" name="shop_img" id="shop_img" /><span id="shop_imgs" style="color: red;"></span><br/>
+                            店铺描述:<input style="margin-top: 20px;margin-left: 30px;width: 300px" onblur="yan_desc()" name="shop_desc" id="shop_desc" class="userinput vpr" type="text" placeholder="店铺描述" /><span id="shop_descs" style="color: red;"></span><br/>
+                            店铺url: <input style="margin-top: 20px;margin-left: 35px;width: 300px" name="shop_url"id="shop_url" class="userinput vpr" onblur="yan_url()" type="text" placeholder="店铺url" /><span id="shop_urls" style="color: red;"></span><br/>
+                            <button   style="margin-top: 30px;margin-left: 100px" class="userbtn">添加</button>
 						</div>
 					</form>
 				</div>
-				<!-- user 表格 显示 -->
-				<div class="conShow">
-					<table border="1" cellspacing="0" cellpadding="0">
-						<tr>
-							<td width="66px" class="tdColor tdC">序号</td>
-							<td width="435px" class="tdColor">会员等级</td>
-							<td width="400px" class="tdColor">用户名</td>
-							<td width="630px" class="tdColor">添加时间</td>
-							<td width="130px" class="tdColor">操作</td>
-						</tr>
-						<tr height="40px">
-							<td>1</td>
-							<td>运营专员</td>
-							<td>山下就只</td>
-							<td>2015-25-36 12:12</td>
-							<td><a href="connoisseuradd.html"><img class="operation"
-									src="{{URL::asset('')}}style/img/update.png"></a> <img class="operation delban"
-								src="{{URL::asset('')}}style/img/delete.png"></td>
-						</tr>
-					</table>
-					<div class="paging">此处是分页</div>
-				</div>
-				<!-- user 表格 显示 end-->
 			</div>
 			<!-- user页面样式end -->
 		</div>
 
 	</div>
-
-
-	<!-- 删除弹出框 -->
-	<div class="banDel">
-		<div class="delete">
-			<div class="close">
-				<a><img src="{{URL::asset('')}}style/img/shanchu.png" /></a>
-			</div>
-			<p class="delP1">你确定要删除此条记录吗？</p>
-			<p class="delP2">
-				<a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
-			</p>
-		</div>
-	</div>
-	<!-- 删除弹出框  end-->
 </body>
 
 <script type="text/javascript">
@@ -84,6 +48,105 @@ $(".close").click(function(){
 $(".no").click(function(){
   $(".banDel").hide();
 });
-// 广告弹出框 end
+function yan_name(){
+    var shop_name=$("#shop_name").val();
+    if(shop_name=="")
+    {
+        $("#shop_names").html("店铺名称不可为空");
+    }else
+    {
+        $.ajax({
+            url: "{{url('Shop/shopweiyi')}}",
+            type: "POST",
+            data: "shop_name=" +shop_name,
+            dataType: "text",
+            async: false,
+            success: function (result) {
+                if (result == 1) {
+                    return ;
+                }else{
+                    $("#shop_names").html("");
+                }
+            },
+            error: function () {
+                $("#shop_names").html("店铺名称已存在，请重新输入");
+            }
+        });
+    }
+}
+function yan_img(){
+    var shop_img=$("#shop_img").val();
+    if(shop_img=="")
+    {
+        $("#shop_imgs").html("请选择店铺log");
+    }else
+    {
+        $("#shop_imgs").html("");
+    }
+}
+function yan_desc(){
+    var shop_desc=$("#shop_desc").val();
+    if(shop_desc=="")
+    {
+        $("#shop_descs").html("店铺描述不可为空");
+    }else
+    {
+        $("#shop_descs").html("");
+    }
+}
+function yan_url(){
+    var shop_url=$("#shop_url").val();
+    if(shop_url=="")
+    {
+        $("#shop_urls").html("店铺url不可为空");
+    }else
+    {
+        $("#shop_urls").html("");
+    }
+}
+var rst = false;
+function shopadd() {
+    var shop_name=$("#shop_name").val();
+    var shop_img=$("#shop_img").val();
+    var shop_desc=$("#shop_desc").val();
+    var shop_url=$("#shop_url").val();
+    if(shop_name=="")
+    {
+        $("#shop_names").html("店铺名称不可为空");
+        return false;
+    }else if(shop_img=="")
+    {
+        $("#shop_imgs").html("请选择店铺log");
+        return false;
+    }else if(shop_desc=="")
+    {
+        $("#shop_descs").html("店铺描述不可为空");
+        return false;
+    }else if(shop_url=="")
+    {
+        $("#shop_urls").html("店铺url不可为空");
+        return false;
+    }else{
+        $.ajax({
+            url: "{{url('Shop/shopweiyi')}}",
+            type: "POST",
+            data: "shop_name=" +shop_name,
+            dataType: "text",
+            async: false,
+            success: function (result) {
+                if (result == 1) {
+                    $("#shop_names").html("店铺名称已存在，请重新输入");
+                }else{
+                    rst=true;
+                }
+            },
+            error: function () {
+                alert("发生错误");
+            }
+        });
+        return rst;
+    }
+
+}
 </script>
 </html>

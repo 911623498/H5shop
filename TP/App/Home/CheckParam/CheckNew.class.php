@@ -10,7 +10,6 @@ class CheckNew extends BaseCheck
    {
 
        $check_param_template = array(
-
            /**
             * type 表示类型
             * is_must 表示是否必须[1、必须]
@@ -48,7 +47,6 @@ class CheckNew extends BaseCheck
                 'type' => 's',
                 'is_must' => 1
             ),
-
         );
 
         return $this -> checkParam( $data , $check_param_template );
