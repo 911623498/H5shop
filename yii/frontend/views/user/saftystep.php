@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="renderer" content="webkit">
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="icon" type="style/image/png" href="style/style/theme/default/images/favicon.png">
+        <link rel="icon" type="image/png" href="style/theme/default/images/favicon.png">
 		<link href="style/css/amazeui.min.css" rel="stylesheet" type="text/css" />
 		<link href="style/css/style.css" rel="stylesheet" type="text/css" />
 	</head>
@@ -27,7 +27,7 @@
 	    <div style="height: 49px;"></div>
 	    <ul class="safty">
 	    	<li>
-	    		<a href="password.html">
+	    		<a href="index.php?r=user/pwd">
 	    			<img src="style/images/update.png" width="40" />
 	    			<i>修改登录密码</i>
 	    			<span class="am-icon-angle-right"></span>

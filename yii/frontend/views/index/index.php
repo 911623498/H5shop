@@ -37,7 +37,7 @@
 			<div class="am-header-left am-header-nav">
 		        <a href="city.html" class="">
 			        <img src="style/images/city.png" />
-			        <p style="font-size: 12px; margin-top: -35px;">南昌</p>
+			        <p style="font-size: 12px; margin-top: -35px;"><?= $client_city ?></p>
 			    </a>
 		   </div>
 			<h1 class="am-header-title1">
@@ -148,24 +148,6 @@
               <img src="style/images/test.png" />
                 <h3 class="am-gallery-title">猪骨头棒新鲜生鲜肉制品猪大骨头筒骨熬汤佳品500g</h3>
                 <div class="am-gallery-desc">￥52</div>
-            </a>
-        </div>
-      </li>
-      <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test1.png" />
-                <h3 class="am-gallery-title">冻品批发大江鸡腿 冷鲜鸡腿放心食材1kg 冷冻食材</h3>
-                <div class="am-gallery-desc">￥39</div>
-            </a>
-        </div>
-      </li>
-        <li>
-        <div class="am-gallery-item">
-            <a href="detail.html" class="">
-              <img src="style/images/test2.png" />
-                <h3 class="am-gallery-title">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</h3>
-                <div class="am-gallery-desc">￥45.8</div>
             </a>
         </div>
       </li>

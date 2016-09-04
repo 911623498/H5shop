@@ -23,7 +23,12 @@ class success {
     const TOKEN_SUCCESS = 0;
     const TOKEN_SUCCESS_MSG = '登录成功!';
 
+    //查询新品成功
+    const SPECS_SUCCESS = 0;
+    const SPECS_SUCCESS_MSG = '信息返回成功!';
 
-
+    //修改密码
+    const PWD_SUCCESS = 0;
+    const PWD_SUCCESS_MSG = '密码修改成功!';
 
 }

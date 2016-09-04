@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 远方
- * Date: 2016/7/15
- * Time: 20:49
- */
-
 namespace Home\Controller;
 use Think\Controller;
 use Home\status\parm;

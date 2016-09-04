@@ -11,21 +11,23 @@ class CommonController extends Controller
         'User/test_user',
         'Index/verify',
         'Index/test_vef',
-        'Index/nuion'
-
+        'Index/nuion',
+        'Specs/Newshop'
     );
+
     public function __construct()
     {
         $this->_action=array_map('strtolower',$this->_action);
         //var_dump( $this->_action);die;
+    
+        //接收值的集合        
         $all_data = array_merge( $_POST , $_GET , $_REQUEST );
         unset( $_POST );
         unset( $_GET );
         unset( $_REQUEST );
 
-        $this -> _data  = html_encode( $all_data );
-
         //参数过滤【 必须要的，防止XSS攻击以及SQL注入等 】
+        $this -> _data  = html_encode( $all_data );
 
         //获取当前请求的控制器
         $Controller = ucwords(str_replace( __MODULE__ . '/' , '' , __CONTROLLER__ ) );
@@ -52,7 +54,7 @@ class CommonController extends Controller
                 $Instance = $ReflectionClass->newInstance();
 
                 //格式化数据类型
-                $error_info = $ReflectionMethod->invokeArgs( $Instance , array(   $this -> _data ) );
+                $error_info = $ReflectionMethod->invokeArgs( $Instance , array( $this -> _data ) );
 
                 //提示参数错误
                 if( !empty( $error_info ) && $error_info['mark'] != 0 ){
@@ -60,9 +62,7 @@ class CommonController extends Controller
                     $this -> failure( $error_info['mark'] , $error_info['msg'] );die;
                 }
             }
-
         }
-
     }
 
 
