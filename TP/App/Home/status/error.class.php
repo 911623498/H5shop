@@ -32,6 +32,31 @@ class error {
 
     const LOCK_MMEIAL = 2;
     const LOCK_MMEIAL_MSG = '您的验证信息已过期！';
+//特卖商品列表
+    const SPEC_MMEIAL = 2;
+    const SPEC_MMEIAL_MSG = '当期没有热卖商品';
+//商品列表
+    const SHOW_MMEIAL = 2;
+    const SHOW_MMEIAL_MSG = '当期没有上架商品';
+
+
+
+
+
+
+//查询新品暂无数据
+    const EMPTY_DATA = 1;
+    const EMPTY_DATA_MSG = '暂无数据!';
+
+
+//判断密码
+    // 旧密码
+    const ERROR_PWD = 1;
+    const ERROE_CHECK_PWD = '您输入的旧密码有误';
+
+    const ERROR_LEN = 1;
+    const ERROE_PWD_STRLEN = '密码长度大于6位小于12位';
+
 
 //分类
     const CATE_ERROR = 1;

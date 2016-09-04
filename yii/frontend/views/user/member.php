@@ -84,7 +84,7 @@
 		    <ul class="user-nav">
 		    	<li><a href="infor.html"> <img src="style/images/1-icon4.png"> <p>个人资料</p></a></li>
 		    	<li><a href="gladdress.html"> <img src="style/images/1-icon5.png"> <p>收货地址</p></a></li>
-		    	<li><a href="saftystep.html"> <img src="style/images/1-icon6.png"> <p>安全设置</p></a></li>
+		    	<li><a href="index.php?r=user/aecurity"> <img src="style/images/1-icon6.png"> <p>安全设置</p></a></li>
 		    	<li><a href="money.html"> <img src="style/images/1-icon7.png"> <p>我的钱包</p></a></li>
 		    </ul>
 	    </div>
@@ -108,7 +108,7 @@
       </li>
       <li>
         <div class="am-gallery-item">
-            <a href="memberreserve.html" class="">
+            <a href="?r=spec/shop_list" class="">
               <img src="style/images/icon2.png" />
               <p>我的预定</p>
             </a>
@@ -116,7 +116,7 @@
       </li>
       <li>
         <div class="am-gallery-item">
-            <a href="" class="">
+            <a href="index.php?r=user/login_out" class="">
               <img src="style/images/icon8.png" />
               <p>安全退出</p>
             </a>

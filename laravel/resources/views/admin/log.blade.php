@@ -31,15 +31,10 @@
 					placeholder="输入用户名" id="name" />
 			</div>
 			<div class="lgD">
-				<img class="img1" src="{{URL::asset('')}}admin/img/logPwd.png" /><input type="text"
+				<img class="img1" src="{{URL::asset('')}}admin/img/logPwd.png" /><input type="password"
 					placeholder="输入用户密码" id="pwd" />
 			</div>
-			<div class="lgD logD2">
-				<input class="getYZM" type="text" />
-				<div class="logYZM">
-					<img class="yzm" src="{{URL::asset('')}}admin/img/logYZM.png" />
-				</div>
-			</div>
+			
 			<div class="logC">
 				<button  onclick="add()">登 录</button>
 			</div>
@@ -65,10 +60,17 @@
 
         $.ajax({
             type: "POST",
-            url: "{{url('index/reuser')}}",
+            url: "{{url('Login/reuser')}}",
             data: "name="+name+"&&pwd="+pwd,
             success: function(msg){
-                alert( "Data Saved: " + msg );
+               //console.log( eval("("+msg+")" ));
+			   var obj = eval("("+msg+")" );
+                //alert(obj.msg)
+                if(obj.status==0){
+				location.href="{{url('index/index')}}";
+			   }else{
+				   alert(obj.msg);
+			   }
             }
         });
     }

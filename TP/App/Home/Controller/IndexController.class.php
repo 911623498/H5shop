@@ -5,102 +5,75 @@ use Home\status\parm;
 use Home\status\error;
 use Home\status\success;
 
-
 class IndexController extends CommonController {
 
+
+    /**
+     * d登录
+     * [index description]
+     * @return [type] [description]
+     */
     public function index(){
         //用户名不能为空
-        $user_name = is_set($this -> _data , 'user_name' );
+        $user_name = is_set($this -> _data , 'userName' );
         if (empty($user_name)) {
             return $this -> failure( parm::PARAM_MISS ,parm::PARAM_MISS_MSG );
         }
 
         //密码不能为空
-        $user_password = is_set( $this -> _data , 'user_password' );
+        $user_password = is_set( $this -> _data , 'password' );
         if (empty($user_password)) {
             return   $this -> failure(parm::PARAM_ERROR ,parm::PARAM_ERROR_MSG);
         }
-         //获取用户登录类型
-        $user_type = is_set($this -> _data , 'type' );
-       // echo $user_type;die;
 
         //获取密码
-        $user_model = M('z_user');
+        $user_model = M('users');
         $where = array(
-            'u_name' => $user_name
+            'user_name' => $user_name
         );
 
         //查询用户信息
         $user_info = $user_model->where($where)->find();
-        if (empty($user_info)) {
+
+        if (empty($user_info)) 
+        {
             return  $this -> failure( error::USER_NOT_FOUND, error::USER_NOT_FOUND_MSG );
         }
 
         //验证密码
-        if (md5($user_password) != $user_info['u_pwd'])
+        if (md5($user_password) != $user_info['user_pwd'])
         {
             return  $this -> failure( error::USER_PASSWORD_ERROR,error::USER_PASSWORD_ERROR_MSG );
         }
 
-        if($user_info['u_activate']==0)
-        {
-            return  $this -> failure( error::USER_IS_LOCKER,error::USER_IS_LOCKER_MSG );
 
-        }
-
-        $where1=array(
-            'u_id'=>$user_info['u_id'],
-            'type'=>$user_type
-        );
-        $res = M('add_type')->where($where1)->find();
-
-       // print_r($res);die;
         $rand=mt_rand();
         $token=md5($rand);
         $time=date("Y-m-d H:i:s",time());
-       // print_r($res);die;
-        if(empty($res['token']))
-        {
 
-            //var_dump($User);die;
-            $data['u_id'] =$user_info['u_id'];
-            $data['token'] =$token;
-            $data['add_time'] =$time;
-            $data['type'] =$user_type;
-            M('add_type')->add($data);
-        }
-        else
-        {
+        $data['user_token'] =$token;
+        $user_id = $user_info['user_id'];
+        $re = $user_model->where('user_id='.$user_id)->save($data);
 
-            $data['u_id'] =$user_info['u_id'];
-            $data['token'] =$token;
-            $data['up_time'] =$time;
-            // print_r($data);die;
-
-            $where2=array(
-                'u_id'=>$user_info['u_id'],
-                'type'=>$user_type
+        $name_pwd = array(
+                'user_name' => $user_name,
+                'user_pwd'=>md5($user_password) ,
             );
+        $user_info1 = $user_model->where($where)->find();
 
-            $re = M('add_type')->where($where2)->save($data);
-            if($re)
-            {
-                $user_info['token']=$token;
-               // $user_info['u_id']=$user_info['u_id'];
-                $user_info['type']=$user_type;
-                return  $this -> success($user_info,success::LOGIN_SUCCESS_MSG,success::LOGIN_SUCCESS);
-            }
+        if($re){
+            return  $this -> success($user_info1,success::LOGIN_SUCCESS_MSG,success::LOGIN_SUCCESS);
+        }else{
+            return  $this -> success($user_info1,success::LOGIN_SUCCESS_MSG,success::LOGIN_SUCCESS);
         }
-       // print_r($user_info);die;
-
-
-
     }
+
+
 
     public function email()
     {
 
-           $email = is_set($this -> _data , 'email' );
+        $email = is_set($this -> _data , 'email' );
         if (empty($email)) {
             return $this -> failure( parm::PARAM_MMEIAL ,parm::PARAM_MMEIAL_MSG );
         }
@@ -118,16 +91,14 @@ class IndexController extends CommonController {
         {
             return  $this -> failure( error::PARAM_MMEIAL, error::PARAM_MMEIAL_MSG );
         }
-
+        
         return  $this -> success($user_info,success::EMAIL_SUCCESS_MSG,success::EMAIL_SUCCESS);
-
     }
 
 
     /*
-     *
      * 用户注册
-     * */
+     */
 
     public function add_user()
     {
@@ -235,4 +206,51 @@ class IndexController extends CommonController {
        echo  5;
 
     }
+
+
+
+    /**
+     * 修改密码
+     * [up_pwd description]
+     * @return [type] [description]
+     */
+    public function up_pwd()
+    {
+        /**
+         * 接受数据
+         */
+        //接受用户ID
+        $user_id = is_set($this -> _data , 'user_id' );
+
+        //查询用户是否存在
+        $users = M('users');
+        $user_info = $users -> where(array('user_id' => $user_id))-> find();
+// print_r($user_info);die;
+        //接受原密码
+        $old_pwd = is_set($this -> _data , 'old_pwd' );
+
+        if(md5($old_pwd ) != $user_info['user_pwd']){
+            return  $this ->failure(error::ERROR_PWD,error::ERROE_CHECK_PWD );
+        }
+
+
+
+        //接受新密码
+        $new_pwd = is_set($this -> _data , 'new_pwd' );
+        //判断新密码长度
+        $len = strlen($new_pwd);
+
+        if( $len<6 || $len>12 ){
+            return  $this ->failure(error::ERROR_LEN,error::ERROE_PWD_STRLEN );
+        }
+
+        $data['user_pwd'] = md5($new_pwd);
+        $res = $users->where(array('user_id' => $user_id))->save($data);
+        if($res){
+            return  $this ->success(array(),success::PWD_SUCCESS_MSG,success::PWD_SUCCESS);
+        }
+    }
+
+
+
 }

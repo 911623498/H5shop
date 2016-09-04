@@ -37,27 +37,20 @@
 			      <div class="am-tabs-bd">
 			          <div data-tab-panel-0 class="am-tab-panel am-active">
                           <ul class="list-pro">
+                              <?php
+                              foreach($goods as $k=>$v){
+                              ?>
 					    	<li>
-					    		<a href="detail.html"><img src=" style/images/test10.png" class="list-pic" /></a>
+					    		<a href="?r=spec/reds&id=<?php echo $v['goods_id']?>"><img src="style/images/test10.png" class="list-pic" /></a>
 					    		<div class="shop-list-mid" style="width: 65%;">
-				                	<div class="tit"><a href="detail.html">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</a></div>
-				                	<a href="myreserve.html"  class="reserve-btn">立即预订</a>
+				                	<div class="tit" ><a href="?r=spec/reds&id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
+                                    <div class="tit" ><a href="?r=spec/reds&id=<?php echo $v['goods_id']?>">预售金额：<?php echo $v['goods_rebate']?></a></div>
+				                	<a href="?r=spec/reds&id=<?php echo $v['goods_id']?>&money=<?php echo $v['goods_rebate']?>"  class="reserve-btn">立即预订</a>
 				                </div>
 					    	</li>
-					    	<li>
-					    		<a href="detail.html"><img src=" style/images/test10.png" class="list-pic" /></a>
-					    		<div class="shop-list-mid" style="width: 65%;">
-				                	<div class="tit" ><a href="detail.html">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</a></div>
-				                	<a href="myreserve.html"  class="reserve-btn">立即预订</a>
-				                </div>
-					    	</li>
-					    	<li>
-					    		<a href="myreserve.html"><img src=" style/images/test10.png" class="list-pic" /></a>
-					    		<div class="shop-list-mid" style="width: 65%;">
-				                	<div class="tit" ><a href="detail.html">法国加力果12个装 进口新鲜水果 嘎啦苹果 包邮</a></div>
-				                	<a href=""  class="reserve-btn">立即预订</a>
-				                </div>
-					    	</li>
+                              <?php
+                              }
+                              ?>
 					    </ul>
 			          </div>
 			          <div data-tab-panel-1 class="am-tab-panel ">
