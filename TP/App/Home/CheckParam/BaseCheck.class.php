@@ -26,7 +26,6 @@ class BaseCheck
                     $error = array('mark' => parm::USER_NAME_IS_NULL , 'msg' => sprintf(parm::USER_NAME_IS_NULL_MSG, $key));
                     break;
                 } else {
-
                     //强制类型转换
                     $this -> f( $value['type'] , $data[$key] );
                     if ( !empty( $value['enum_array'] ) && !in_array($data[$key], $value['enum_array'])) {

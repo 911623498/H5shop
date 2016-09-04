@@ -20,7 +20,9 @@ class parm {
     const PARAM_ERROR = 1;
     const PARAM_ERROR_MSG = '密码不能为空！';
 
-
+    //密码不能为空
+    const DETAIL_ERROR = 1;
+    const DETAIL_ERROR_MSG = '商品ID不能为空！';
 
     //用户id不能为空
     const USER_ERROR = 1;

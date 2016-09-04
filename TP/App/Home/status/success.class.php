@@ -22,6 +22,9 @@ class success {
 
     const TOKEN_SUCCESS = 0;
     const TOKEN_SUCCESS_MSG = '登录成功!';
+    //特卖商品列表
+    const SPEC_SUCCESS = 0;
+    const SPEC_SUCCESS_MSG = '信息返回!';
 
 
 

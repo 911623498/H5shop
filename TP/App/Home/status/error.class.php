@@ -32,6 +32,12 @@ class error {
 
     const LOCK_MMEIAL = 2;
     const LOCK_MMEIAL_MSG = '您的验证信息已过期！';
+//特卖商品列表
+    const SPEC_MMEIAL = 2;
+    const SPEC_MMEIAL_MSG = '当期没有热卖商品';
+//商品列表
+    const SHOW_MMEIAL = 2;
+    const SHOW_MMEIAL_MSG = '当期没有上架商品';
 
 
 }
