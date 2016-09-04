@@ -15,6 +15,9 @@ class parm {
     //用户不能为空
     const PARAM_MISS = 1;
     const PARAM_MISS_MSG = '用户名不能为空！';
+    //用户不能为空
+    const TYPE_MISS = 1;
+    const TYPE_MISS_MSG = '分类不能为空！';
 
     //密码不能为空
     const PARAM_ERROR = 1;
@@ -40,5 +43,17 @@ class parm {
 
     const PARAM_USER = 1;
     const PARAM_USER_MSG = '请选择用类型！';
+
+
+    //提醒我
+
+    const TELLME_ADD = 1;
+    const TELLME_ADD_MSG = '添加失败！';
+
+    //提醒我删除
+
+    const TELLME_DEL = 1;
+    const TELLME_DEL_MSG = '删除失败！';
+
 
 }

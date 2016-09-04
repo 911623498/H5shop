@@ -53,7 +53,7 @@ class CommonController extends Controller
 
                 //格式化数据类型
                 $error_info = $ReflectionMethod->invokeArgs( $Instance , array(   $this -> _data ) );
-
+                  //  echo  $this -> _data;die;
                 //提示参数错误
                 if( !empty( $error_info ) && $error_info['mark'] != 0 ){
 

@@ -42,8 +42,8 @@
 		   </div>
 			<h1 class="am-header-title1">
 		        <div class="search-box">
-		           <input type="text" name="title" class="index-search" placeholder="寻找你喜欢的商品......" />
-		           <input type="submit" value="" class="search-icon" /> 
+		           <input type="text" name="title" class="index-search"   id="content" placeholder="寻找你喜欢的商品......" />
+		           <input type="submit" value="" class="search-icon"  id="search" />
 		        </div>
 		    </h1>
 			<div class="am-header-right am-header-nav">
@@ -103,9 +103,9 @@
       </li>
       <li>
         <div class="am-gallery-item">
-            <a href="whitebar.html" class="">
+            <a href="index.php?r=buy/index" class="">
               <img src="style/images/icon5.png" />
-              <p>白条</p>
+              <p>限时抢购</p>
             </a>
         </div>
       </li>
@@ -297,3 +297,9 @@
 <script src="style/js/amazeui.min.js"></script>
 	</body>
 </html>
+<script>
+    $("#search").click(function(){
+        var search = $("#content").val();
+        self.location="?r=cate/search&search="+search;
+    });
+</script>

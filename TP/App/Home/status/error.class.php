@@ -33,5 +33,7 @@ class error {
     const LOCK_MMEIAL = 2;
     const LOCK_MMEIAL_MSG = '您的验证信息已过期！';
 
-
+//分类
+    const CATE_ERROR = 1;
+    const CATE_ERROR_MSG = '成功获取数据';
 }
