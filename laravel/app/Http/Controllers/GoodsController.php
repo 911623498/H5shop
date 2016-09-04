@@ -9,14 +9,23 @@ use Illuminate\Support\Facades\Cookie;
 use Input;
 use App\Http\Models\Role_type;
 
-class ArticleController extends Controller
+class GoodsController extends Controller
 {
 	/**
-	 * 文章列表
+	 * 商品列表
 	 * @return [type] [description]
 	 */
-	public function article()
+	public function goodslist()
 	{
-		return view('article.article');
+		return view('goods.goodslist');
+	}
+
+	/**
+	 * 商品添加
+	 * @return [type] [description]
+	 */
+	public function goodsadd()
+	{
+		return view('goods.goodsadd');
 	}
 }

@@ -18,8 +18,8 @@
 			<!-- 修改密码页面样式 -->
 			<div class="bacen">
 				<div class="bbD">
-					&nbsp;&nbsp;&nbsp;&nbsp;管理员UID：&nbsp;&nbsp;&nbsp;&nbsp;123</div>
-				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;123456789</div>
+					&nbsp;&nbsp;&nbsp;&nbsp;管理员UID：&nbsp;&nbsp;&nbsp;&nbsp;{{$name}}</div>
+				<div class="bbD">管理员用户名：&nbsp;&nbsp;&nbsp;&nbsp;{{$name_id}}</div>
 				<div class="bbD">
 					&nbsp;&nbsp;&nbsp;&nbsp;输入旧密码：<input type="password" class="input3"
 						onblur="checkpwd1()" id="pwd1" /> <img class="imga"
@@ -37,8 +37,8 @@
 				</div>
 				<div class="bbD">
 					<p class="bbDP">
-						<button class="btn_ok btn_yes" href="#">提交</button>
-						<a class="btn_ok btn_no" href="#">取消</a>
+						<button type="button" onclick="change()" class="btn_ok btn_yes" href="#" id="xg">提交</button>
+						<a class="btn_ok btn_no" target='_parent' href="{{url('index/index')}}">取消</a>
 					</p>
 				</div>
 			</div>
@@ -50,22 +50,42 @@
 <script type="text/javascript">
 function checkpwd1(){
 var user = document.getElementById('pwd1').value.trim();
- if (user.length >= 6 && user.length <= 12) {
-  $("#pwd1").parent().find(".imga").show();
-  $("#pwd1").parent().find(".imgb").hide();
- }else{
-  $("#pwd1").parent().find(".imgb").show();
-  $("#pwd1").parent().find(".imga").hide();
- };
+var new_pwd = document.getElementById('pwd2').value.trim();
+var new_pwd1 = document.getElementById('pwd3').value.trim();
+$.ajax({
+            type: "POST",
+            url: "{{url('System/change')}}",
+            data: "pwd="+user,
+            success: function(msg){
+               //console.log( eval("("+msg+")" ));
+			   //var obj = eval("("+msg+")" );
+			   //alert(msg)
+			   if(msg){
+				   $("#pwd1").parent().find(".imga").show();
+					$("#pwd1").parent().find(".imgb").hide();
+					$("#xg").attr("disabled",false); 
+				//location.href="http://www.shop.com/H5shop/laravel/public/index/index";
+			   }else{
+				   //alert(1)
+				   $("#pwd1").parent().find(".imgb").show();
+					$("#pwd1").parent().find(".imga").hide();
+					$("#xg").attr("disabled","disabled"); 
+				   //alert(obj.msg);
+			   }
+            }
+        });
+ 
 }
 function checkpwd2(){
 var user = document.getElementById('pwd2').value.trim();
  if (user.length >= 6 && user.length <= 12) {
   $("#pwd2").parent().find(".imga").show();
   $("#pwd2").parent().find(".imgb").hide();
+  $("#xg").attr("disabled",false); 
  }else{
   $("#pwd2").parent().find(".imgb").show();
   $("#pwd2").parent().find(".imga").hide();
+  $("#xg").attr("disabled","disabled"); 
  };
 }
 function checkpwd3(){
@@ -74,10 +94,27 @@ var pwd = document.getElementById('pwd2').value.trim();
  if (user.length >= 6 && user.length <= 12 && user == pwd) {
   $("#pwd3").parent().find(".imga").show();
   $("#pwd3").parent().find(".imgb").hide();
+  $("#xg").attr("disabled",false); 
  }else{
    $("#pwd3").parent().find(".imgb").show();
   $("#pwd3").parent().find(".imga").hide();
+  $("#xg").attr("disabled","disabled"); 
  };
+}
+function change(){
+	var user = document.getElementById('pwd1').value.trim();
+	var new_pwd = document.getElementById('pwd2').value.trim();
+	$.ajax({
+            type: "POST",
+            url: "{{url('System/changepwds')}}",
+            data: "pwd="+user+"&&new_pwd="+new_pwd,
+            success: function(msg){
+               console.log( eval("("+msg+")" ));
+			   var obj = eval("("+msg+")" );
+			   alert(obj.msg)
+			  
+            }
+        });
 }
 </script>
 </html>

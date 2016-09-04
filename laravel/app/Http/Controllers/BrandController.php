@@ -9,23 +9,22 @@ use Illuminate\Support\Facades\Cookie;
 use Input;
 use App\Http\Models\Role_type;
 
-class AdvertController extends Controller
+class BrandController extends Controller
 {
 	/**
-	 * 广告管理
+	 * 品牌列表
 	 * @return [type] [description]
 	 */
-	public function advert()
+	public function  brandlist()
 	{
-		return view('advert.advert');
+		return view('brand.brandlist');
 	}
-
-	/**
-	 * 广告添加
-	 * @return [type] [description]
-	 */
-	public function advertadd()
-	{
-		return view('advert.advertadd');
-	}
+    /**
+     * 品牌添加
+     * @return [type] [description]
+     */
+    public function  brandadd()
+    {
+        return view('brand.brandadd');
+    }
 }

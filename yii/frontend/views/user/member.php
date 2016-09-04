@@ -108,7 +108,7 @@
       </li>
       <li>
         <div class="am-gallery-item">
-            <a href="memberreserve.html" class="">
+            <a href="?r=spec/shop_list" class="">
               <img src="style/images/icon2.png" />
               <p>我的预定</p>
             </a>

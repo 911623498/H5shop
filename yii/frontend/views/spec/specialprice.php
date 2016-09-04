@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -15,6 +15,7 @@
 		<script src="style/js/jquery-1.10.2.min.js"></script>
 	</head>
 	<body>
+    <?php error_reporting(0);?>
 		<header data-am-widget="header" class="am-header am-header-default sq-head ">
 			<div class="am-header-left am-header-nav">
 				<a href="javascript:history.back()" class="">
@@ -36,82 +37,40 @@
 			      <div class="am-tabs-bd">
 			          <div data-tab-panel-0 class="am-tab-panel am-active">
                          <ul data-am-widget="gallery" class="am-gallery special am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-gallery-default" >
+                             <?php
+                            foreach($one as $k=>$v){
+                             ?>
 						      <li>
 						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
+						            <a href="?r=spec/detail&id=<?php echo $v['goods_id']?>" class="">
 						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
+						                <h3 class="am-gallery-title"><?php echo $v['goods_name']?></h3>
+						                <div class="am-gallery-desc">购买金额：<?php echo $v['goods_price']?>&nbsp;&nbsp;&nbsp;返利金额：<?php echo $v['goods_rebate']?></div>
 						            </a>
 						        </div>
 						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
+                             <?php
+                             }
+                             ?>
 						 </ul>
 			          </div>
 			          <div data-tab-panel-1 class="am-tab-panel ">
 			             <ul data-am-widget="gallery" class="am-gallery special am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-gallery-default" >
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-	                                    <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
-						      <li>
-						        <div class="am-gallery-item">
-						            <a href="detail.html" class="">
-						              <img src="style/images/test10.png"/>
-						                <h3 class="am-gallery-title">烟台红富士 一级果 以上 10斤装</h3>
-						                <div class="am-gallery-desc">￥68.00 <del>￥168.00</del></div>
-						            </a>
-						        </div>
-						      </li>
+                             <?php
+                             foreach($two as $k=>$v){
+                                 ?>
+                                 <li>
+                                     <div class="am-gallery-item">
+                                         <a href="?r=spec/detail&id=<?php echo $v['goods_id']?>" class="">
+                                             <img src="style/images/test10.png"/>
+                                             <h3 class="am-gallery-title"><?php echo $v['goods_name']?></h3>
+                                             <div class="am-gallery-desc">购买金额：<?php echo $v['goods_price']?>&nbsp;&nbsp;&nbsp;返利金额：<?php echo $v['goods_rebate']?></div>
+                                         </a>
+                                     </div>
+                                 </li>
+                             <?php
+                             }
+                             ?>
 						 </ul>
 			          </div>
 			      </div>
